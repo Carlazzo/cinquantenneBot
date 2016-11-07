@@ -25,21 +25,21 @@ $text = strtolower($text);
 // imposto l'header della risposta
 header("Content-Type: application/json");
 $response = '';
-if(strpos($text, "/start") === 0 || $text=="ciao")
+if(strpos($text, "/start") === 0 || $text=="buongiorno")
 {
-	$response = "Ciao $firstname, benvenuto!";
+	$response = "Buongiornissimo $firstname, kaffeee!!11!!";
 }
-elseif($text=="domanda 1")
+elseif($text=="politica")
 {
-	$response = "risposta 1";
+	$response = "E renzi ke faaa????";
 }
-elseif($text=="domanda 2")
+elseif($text=="salvini")
 {
-	$response = "risposta 2";
+	$response = "RUSPA!!";
 }
 else
 {
-	$response = "Comando non valido!";
+	//$response = "Comando non valido!";
 }
 
 // la mia risposta è un array JSON composto da chat_id, text, method
