@@ -32,7 +32,7 @@ function createArray($chatId, $method, $message, $photo) {
 		$array["photo"] = $photo;
 	} 
 	// converto e stampo l'array JSON sulla response
-	return json_encode($parameters);  
+	return json_encode($array );  
 }
 
 // assegno alle seguenti variabili il contenuto ricevuto da Telegram
@@ -57,7 +57,7 @@ $photo = "";
 // la mia risposta è un array JSON composto da chat_id, text, method
 // chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
 // text è il testo della risposta
-$parameters = array('chat_id' => $chatId);
+
 //, "text" => $response
 //regual expression per decidere che risposta dare
 if (preg_match('/^buongiorno/', $text)) {
