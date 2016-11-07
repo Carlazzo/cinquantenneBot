@@ -72,7 +72,7 @@ if (preg_match('/^buongiorno/', $text)) {
 	$response = "ELSE";
 }
 */
-$parameters = array('chat_id' => $chatId, "photo" => "http://www.ilsecoloxix.it/rw/IlSecoloXIXWEB/magazine/high_tech/foto_trattate/2016/08/22/cinquant3-H160822121132-kB1E--673x320@IlSecoloXIXWEB.jpg");
+$parameters = array('chat_id' => $chatId, "photo" => "image1.jpg");
 // method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 $parameters["method"] = "sendPhoto";
 // converto e stampo l'array JSON sulla response
