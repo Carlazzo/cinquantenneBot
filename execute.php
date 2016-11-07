@@ -54,5 +54,9 @@ try {
 	// converto e stampo l'array JSON sulla response
 	echo json_encode($parameters);
 }catch(Exception $e){
-	echo json_encode(array('chat_id' => $chatId, "text" => $e->getMessage(), method => "sendMessage"));
+	$parameters = array('chat_id' => $chatId, "text" => $e->getMessage());
+	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
+	$parameters["method"] = "sendMessage";
+	
+	echo json_encode($parameters);
 }
