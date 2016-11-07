@@ -24,6 +24,7 @@ try {
 	$date = isset($message['date']) ? $message['date'] : "";
 	$text = isset($message['text']) ? $message['text'] : "";
 	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+	$giornodellasettimana = date("j");
 	// pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 	$text = trim($text);
 	// converto tutti i caratteri alfanumerici del messaggio in minuscolo
@@ -36,12 +37,15 @@ try {
 
 	if (preg_match('/^buongiorno/', $text)) {
 		$response = "Buongiornissimo $firstname!!11!!";		
+		//se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
 	}elseif(preg_match('/politica/', $text)){
 		$response = "E renzi ke faaa????";
 	}elseif(preg_match('/salvini/', $text)){
 		$response = "RUSPA!!";
 	}elseif(preg_match('/falsa/', $text) or preg_match('/bugia/', $text) ){
 		$response = "Perzona Farsa!!!1!1";
+	}elseif(preg_match('/caffe/', $text)){
+		$response = "Kaffeeeee!!!1!1";
 	}else{
 		//$response = "ELSE";
 	}
@@ -54,7 +58,20 @@ try {
 	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 	$parameters["method"] = "sendMessage";
 	// converto e stampo l'array JSON sulla response
-	echo json_encode($parameters);
+	//echo json_encode($parameters);
+	
+	
+// change image name and path
+$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("image1.png")), 'caption' => $text);
+$ch = curl_init(); 
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+curl_setopt($ch, CURLOPT_URL, $botUrl); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+// read curl response
+$output = curl_exec($ch);
+
+
 	
 }catch(Exception $e){
 	
