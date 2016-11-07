@@ -37,10 +37,10 @@ try {
 
 	if (preg_match('/^buongiorno/', $text)) {
 		
-		//$response = "Buongiornissimo $firstname!!11!!";		
+		$path = "settimana/".$giornodellasettimana."/".rand(0, 1)."jpg";
 		
 		// change image name and path
-		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("image1.png")), 'caption' => $response);
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => $path);
 		$ch = curl_init(); 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 		curl_setopt($ch, CURLOPT_URL, $botUrl); 
