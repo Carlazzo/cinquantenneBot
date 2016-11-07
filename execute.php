@@ -40,20 +40,24 @@ try {
 		$response = "E renzi ke faaa????";
 	}elseif(preg_match('/salvini/', $text)){
 		$response = "RUSPA!!";
+	}elseif(preg_match('/falsa/', $text) or preg_match('/bugia/', $text) ){
+		$response = "Perzona Farsa!!!1!1";
 	}else{
-		$response = "ELSE";
+		//$response = "ELSE";
 	}
 
 
 	// la mia risposta è un array JSON composto da chat_id, text, method
 	// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
 	// text è il testo della risposta
-	$parameters = array('chat_id' => $chatId, "photo" => "/image1.jpg");
+	$parameters = array('chat_id' => $chatId, "text" => $response);
 	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
-	$parameters["method"] = "sendPhoto";
+	$parameters["method"] = "sendMessage";
 	// converto e stampo l'array JSON sulla response
 	echo json_encode($parameters);
+	
 }catch(Exception $e){
+	
 	$parameters = array('chat_id' => $chatId, "text" => $e->getMessage());
 	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 	$parameters["method"] = "sendMessage";
