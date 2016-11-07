@@ -58,6 +58,7 @@ try {
 		$response = "Perzona Farsa!!!1!1";
 	}elseif(preg_match('/caffe/', $text)){
 		$response = "Kaffeeeee!!!1!1";		
+		$response = "settimana/".$giornodellasettimana."/".rand(0, 1).".jpg";
 	}elseif(preg_match('/amen/', $text)){
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("arcangelo.jpg")), 'caption' => $response);
 		$ch = curl_init(); 
