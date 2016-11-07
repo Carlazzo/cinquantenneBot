@@ -81,7 +81,7 @@ $bot_url    = "https://api.telegram.org/botcinquantenne_bot/";
 $url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
 
 $post_fields = array('chat_id'   => $chat_id,
-    'photo'     => new CURLFile(realpath("/image1.png"))
+    'photo'     => new CURLFile(realpath("/image1.jpg"))
 );
 
 $ch = curl_init(); 
