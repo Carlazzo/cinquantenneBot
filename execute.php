@@ -71,9 +71,26 @@ if (preg_match('/^buongiorno/', $text)) {
 }else{
 	$response = "ELSE";
 }
-*/
+
 $parameters = array('chat_id' => $chatId, "photo" => "image1.jpg");
 // method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 $parameters["method"] = "sendPhoto";
 // converto e stampo l'array JSON sulla response
+*/
+$bot_url    = "https://api.telegram.org/botcinquantenne_bot/";
+$url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
+
+$post_fields = array('chat_id'   => $chat_id,
+    'photo'     => new CURLFile(realpath("/image1.png"))
+);
+
+$ch = curl_init(); 
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "Content-Type:multipart/form-data"
+));
+curl_setopt($ch, CURLOPT_URL, $url); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields); 
+$output = curl_exec($ch);
+
 echo json_encode($parameters);
