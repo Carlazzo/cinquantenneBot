@@ -37,7 +37,7 @@ try {
 
 	if (preg_match('/^buongiorno/', $text)) {
 		
-		$response = "Buongiornissimo $firstname!!11!!";		
+		//$response = "Buongiornissimo $firstname!!11!!";		
 		
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("image1.png")), 'caption' => $response);
@@ -58,6 +58,15 @@ try {
 		$response = "Perzona Farsa!!!1!1";
 	}elseif(preg_match('/caffe/', $text)){
 		$response = "Kaffeeeee!!!1!1";
+	}elseif(preg_match('/amen/', $text)){
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("arcangelo.jpg")), 'caption' => $response);
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+		curl_setopt($ch, CURLOPT_URL, $botUrl); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+		// read curl response
+		$output = curl_exec($ch);
 	}else{
 		//$response = "ELSE";
 	}
