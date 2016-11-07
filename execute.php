@@ -77,8 +77,7 @@ $parameters = array('chat_id' => $chatId, "photo" => "image1.jpg");
 $parameters["method"] = "sendPhoto";
 // converto e stampo l'array JSON sulla response
 */
-$bot_url    = "https://api.telegram.org/botcinquantenne_bot/";
-$url        = $bot_url . "sendPhoto?chat_id=" . $chat_id ;
+$url        = API_URL. "sendPhoto?chat_id=" . $chat_id ;
 
 $post_fields = array('chat_id'   => $chat_id,
     'photo'     => new CURLFile(realpath("/image1.jpg"))
@@ -93,4 +92,4 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields); 
 $output = curl_exec($ch);
 
-echo json_encode($parameters);
+//echo json_encode($parameters);
