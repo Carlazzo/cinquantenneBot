@@ -46,8 +46,8 @@ if (preg_match('/^buongiorno/', $text)) {
 // la mia risposta è un array JSON composto da chat_id, text, method
 // chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
 // text è il testo della risposta
-$parameters = array('chat_id' => $chatId, "text" => $response);
+$parameters = array('chat_id' => $chatId, "photo" => "/image1.jpg");
 // method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
-$parameters["method"] = "sendMessage";
+$parameters["method"] = "sendPhoto";
 // converto e stampo l'array JSON sulla response
 echo json_encode($parameters);
