@@ -24,7 +24,7 @@ try {
 	$date = isset($message['date']) ? $message['date'] : "";
 	$text = isset($message['text']) ? $message['text'] : "";
 	$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
-	$giornodellasettimana = date("j");
+	$giornodellasettimana = date("l");
 	// pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 	$text = trim($text);
 	// converto tutti i caratteri alfanumerici del messaggio in minuscolo
@@ -40,7 +40,7 @@ try {
 		$path = "settimana/".$giornodellasettimana."/".rand(0, 1).".jpg";
 		
 		// change image name and path
-		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => $path);
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
 		$ch = curl_init(); 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 		curl_setopt($ch, CURLOPT_URL, $botUrl); 
@@ -57,8 +57,7 @@ try {
 	}elseif(preg_match('/falsa/', $text) or preg_match('/bugia/', $text) ){
 		$response = "Perzona Farsa!!!1!1";
 	}elseif(preg_match('/caffe/', $text)){
-		//$response = "Kaffeeeee!!!1!1";
-		$response = "settimana/".$giornodellasettimana."/".rand(0, 1).".jpg";
+		$response = "Kaffeeeee!!!1!1";		
 	}elseif(preg_match('/amen/', $text)){
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("arcangelo.jpg")), 'caption' => $response);
 		$ch = curl_init(); 
