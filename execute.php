@@ -1,4 +1,6 @@
 <?php
+define('BOT_TOKEN', '287099689:AAHEUsdjtrD2VN1vgWfJnXcq5TfSTrLLbUE');
+define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 // recupero il contenuto inviato da Telegram
 $content = file_get_contents("php://input");
 // converto il contenuto da JSON ad array PHP
@@ -30,12 +32,12 @@ $response = '';
 //regual expression per decidere che risposta dare
 if (preg_match("/^buongiorno/g", $text)) {
 	$response = "Buongiornissimo $firstname!!11!!";
-} elseif(preg_match("/politica/g", $text))
-{
+}elseif(preg_match("/politica/g", $text)){
 	$response = "E renzi ke faaa????";
-}elseif(preg_match("/salvini/g", $text))
-{
+}elseif(preg_match("/salvini/g", $text)){
 	$response = "RUSPA!!";
+}else{
+	$response = "ELSE";
 }
 
 
