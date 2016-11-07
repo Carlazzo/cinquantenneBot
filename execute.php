@@ -30,11 +30,11 @@ header("Content-Type: application/json");
 $response = '';
 
 //regual expression per decidere che risposta dare
-if (preg_match("/^buongiorno/g", $text)) {
+if (preg_match("buongiorno", $text)) {
 	$response = "Buongiornissimo $firstname!!11!!";
-}elseif(preg_match("/politica/g", $text)){
+}elseif(preg_match("politica", $text)){
 	$response = "E renzi ke faaa????";
-}elseif(preg_match("/salvini/g", $text)){
+}elseif(preg_match("salvini", $text)){
 	$response = "RUSPA!!";
 }else{
 	$response = "ELSE";
