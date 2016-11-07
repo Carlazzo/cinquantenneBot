@@ -19,7 +19,7 @@ $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name']
 $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
-$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+$botUrlSendPhoto = API_URL . "/sendPhoto";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 // converto tutti i caratteri alfanumerici del messaggio in minuscolo
@@ -30,11 +30,11 @@ header("Content-Type: application/json");
 $response = '';
 
 //regual expression per decidere che risposta dare
-if (preg_match("buongiorno", $text)) {
+if (preg_match('/^buongiorno/', $text)) {
 	$response = "Buongiornissimo $firstname!!11!!";
-}elseif(preg_match("politica", $text)){
+}elseif(preg_match('/politica/', $text)){
 	$response = "E renzi ke faaa????";
-}elseif(preg_match("salvini", $text)){
+}elseif(preg_match('/salvini/', $text)){
 	$response = "RUSPA!!";
 }else{
 	$response = "ELSE";
