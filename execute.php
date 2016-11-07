@@ -36,7 +36,19 @@ try {
 	//regual expression per decidere che risposta dare
 
 	if (preg_match('/^buongiorno/', $text)) {
+		
 		$response = "Buongiornissimo $firstname!!11!!";		
+		
+		// change image name and path
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("image1.png")), 'caption' => $response);
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+		curl_setopt($ch, CURLOPT_URL, $botUrl); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+		// read curl response
+		$output = curl_exec($ch);
+
 		//se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
 	}elseif(preg_match('/politica/', $text)){
 		$response = "E renzi ke faaa????";
@@ -58,18 +70,10 @@ try {
 	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 	$parameters["method"] = "sendMessage";
 	// converto e stampo l'array JSON sulla response
-	//echo json_encode($parameters);
+	echo json_encode($parameters);
 	
 	
-// change image name and path
-$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("image1.png")), 'caption' => $text);
-$ch = curl_init(); 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-curl_setopt($ch, CURLOPT_URL, $botUrl); 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-// read curl response
-$output = curl_exec($ch);
+
 
 
 	
