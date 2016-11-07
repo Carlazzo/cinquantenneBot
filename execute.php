@@ -51,7 +51,7 @@ $text = trim($text);
 $text = strtolower($text);
 // mi preparo a restitutire al chiamante la mia risposta che è un oggetto JSON
 // imposto l'header della risposta
-header("Content-Type: application/json");
+/*header("Content-Type: application/json");
 $response = '';
 $photo = "";
 // la mia risposta è un array JSON composto da chat_id, text, method
@@ -71,6 +71,9 @@ if (preg_match('/^buongiorno/', $text)) {
 }else{
 	$response = "ELSE";
 }
-
-
-echo createArray($chatId,$method, $response, $photo );
+*/
+$parameters = array('chat_id' => $chatId, "photo" => "http://www.ilsecoloxix.it/rw/IlSecoloXIXWEB/magazine/high_tech/foto_trattate/2016/08/22/cinquant3-H160822121132-kB1E--673x320@IlSecoloXIXWEB.jpg");
+// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
+$parameters["method"] = "sendPhoto";
+// converto e stampo l'array JSON sulla response
+echo json_encode($parameters);
