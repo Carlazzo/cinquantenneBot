@@ -17,6 +17,7 @@ $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name']
 $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
+$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
 $text = trim($text);
 // converto tutti i caratteri alfanumerici del messaggio in minuscolo
@@ -36,8 +37,15 @@ elseif($text=="politica")
 elseif($text=="salvini")
 {
 	$response = "RUSPA!!";
-}
-else
+}else if($text=="immagine"){
+	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("image1.jpg")), 'caption' => $text);
+	$ch = curl_init(); 
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+	curl_setopt($ch, CURLOPT_URL, $botUrl); 
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+	$output = curl_exec($ch)
+}else
 {
 	//$response = "Comando non valido!";
 }
