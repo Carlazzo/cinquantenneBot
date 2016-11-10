@@ -86,7 +86,20 @@ try {
 		$output = curl_exec($ch);		
 	}
 	elseif(preg_match('/cinismo/', $text)){
-		$path = "immagini/".rand(1, 11).".jpg";
+		$path = "immagini/".rand(1, 13).".jpg";
+		
+		// change image name and path
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+		curl_setopt($ch, CURLOPT_URL, $botUrl); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+		// read curl response
+		$output = curl_exec($ch);		
+	}
+	elseif(preg_match('/buonanotte/', $text) or preg_match('/buona notte/', $text)){
+		$path = "immagini/buonanotte.jpg";
 		
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
