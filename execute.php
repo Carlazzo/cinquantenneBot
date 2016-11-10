@@ -67,7 +67,7 @@ try {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 		// read curl response
 		$output = curl_exec($ch);
-	}elseif(preg_match('/che fai/', $text)){
+	}elseif(preg_match('/che fai/', $text) or preg_match('/pulizzia/', $text) or preg_match('/contatti/', $text)){
 		$response = "PULIZIA KONTATTTIIIII!!!1!!1!";			
 	}else{
 		//$response = "ELSE";
