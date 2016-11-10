@@ -37,7 +37,7 @@ try {
 
 	if (preg_match('/^buongiorno/', $text)) {
 		
-		$path = "settimana/".$giornodellasettimana."/".rand(1, 2).".jpg";
+		$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
 		
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -99,7 +99,7 @@ try {
 		$output = curl_exec($ch);		
 	}
 	elseif(preg_match('/buonanotte/', $text) or preg_match('/buona notte/', $text)){
-		$path = "immagini/buonanotte.jpg";
+		$path = "immagini/buonanotte".rand(1, 2).".jpg";
 		
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
