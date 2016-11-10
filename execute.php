@@ -56,9 +56,9 @@ try {
 		$response = "RUSPA!!";
 	}elseif(preg_match('/falsa/', $text) or preg_match('/bugia/', $text) ){
 		$response = "Perzona Farsa!!!1!1";
-	}elseif(preg_match('/caffe/', $text)){
+	}elseif(preg_match('/caffe/', $text) or preg_match('/caffé/', $text)){
 		$response = "Kaffeeeee!!!1!1";			
-	}elseif(preg_match('/amen/', $text)){
+	}elseif(preg_match('/amen/', $text or preg_match('/preghiera/', $text)or preg_match('/santino/', $text))){
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("arcangelo.jpg")), 'caption' => $response);
 		$ch = curl_init(); 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
@@ -67,10 +67,11 @@ try {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 		// read curl response
 		$output = curl_exec($ch);
+	}elseif(preg_match('/che fai/', $text)){
+		$response = "PULIZIA KONTATTTIIIII!!!1!!1!";			
 	}else{
 		//$response = "ELSE";
 	}
-
 
 	// la mia risposta è un array JSON composto da chat_id, text, method
 	// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
@@ -80,11 +81,6 @@ try {
 	$parameters["method"] = "sendMessage";
 	// converto e stampo l'array JSON sulla response
 	echo json_encode($parameters);
-	
-	
-
-
-
 	
 }catch(Exception $e){
 	
