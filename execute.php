@@ -86,7 +86,7 @@ try {
 		$output = curl_exec($ch);		
 	}
 	elseif(preg_match('/cinismo/', $text)){
-		$path = "immagini/".rand(1, 10).".jpg";
+		$path = "immagini/".rand(1, 11).".jpg";
 		
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
