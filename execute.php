@@ -111,7 +111,14 @@ try {
 		// read curl response
 		$output = curl_exec($ch);		
 	}elseif(preg_match('/info/', $text)){
-		$response = "Benvenuti nella sezione info di 50enne_bot! Inizia bene la giornata digitando buongiorno o buongiornissimo! Ecco l'elenco dei comandi disponibili  :		Buongiorno : ricevere il buongiorno dal bot,		Immagine : Ricevere una simpatica immagine,		BuonaNotte per ricevere la buonanotte dal bot.		Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! <br>				Stay tuned!";
+		$response = "<h1>Benvenuti nella sezione info di 50enne_bot!</h1> <p>Inizia bene la giornata digitando buongiorno o buongiornissimo!</p> <p>Ecco l'elenco dei comandi disponibili  :</p><ul>		<li>Buongiorno : ricevere il buongiorno dal bot,</li>		<li>Immagine : Ricevere una simpatica immagine,</li>		<li>BuonaNotte per ricevere la buonanotte dal bot.</li></ul>		<h5>Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! <h5>				Stay tuned!";
+		
+		$parameters = array('chat_id' => $chatId, "text" => $response, "parse_mode" => "HTML" );
+		// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
+		$parameters["method"] = "sendMessage";
+		// converto e stampo l'array JSON sulla response
+		echo json_encode($parameters);
+	
 	}
 	else{
 		//$response = "ELSE";
