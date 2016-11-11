@@ -35,10 +35,15 @@ try {
     $text = isset($message['text']) ? $message['text'] : "";
     $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
+
     // recupero il contenuto inviato da Telegram
 	$content = file_get_contents("php://input");
 	// converto il contenuto da JSON ad array PHP
 	$update = json_decode($content, true);
+
+    $error = 'Always throw this error';
+    throw new Exception($error);
+    
 	// se la richiesta è null interrompo lo script
 	if(!$update)
 	{
