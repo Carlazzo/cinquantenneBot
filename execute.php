@@ -56,7 +56,7 @@ try {
 		$response = "RUSPA!!";
 	}elseif(preg_match('/falsa/', $text) or preg_match('/bugia/', $text) ){
 		$response = "Perzona Farsa!!!1!1";
-	}elseif(preg_match('/caffe/', $text) or preg_match('/caffé/', $text)){
+	}elseif(preg_match('/caffe/', $text) or preg_match('/caffé/', $text) or preg_match('/caffè/', $text) ){
 		$response = "Kaffeeeee!!!1!1";			
 	}elseif(preg_match('/amen/', $text or preg_match('/preghiera/', $text)or preg_match('/santino/', $text))){
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("arcangelo.jpg")), 'caption' => $response);
@@ -71,7 +71,7 @@ try {
 		$response = "PULIZIA KONTATTTIIIII!!!1!!1!";			
 	}elseif(preg_match('/condividi/', $text)){
 		$response = "copia e incolla sulla tua bacheca!!!!!11!";			
-	}elseif(preg_match('/immagine/', $text)){
+	}elseif(preg_match('/immagine/', $text) or preg_match('/foto/', $text)){
 		$path = "immagini/".rand(1, 10).".jpg";
 		
 		//$response = $path;
@@ -110,6 +110,18 @@ try {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 		// read curl response
 		$output = curl_exec($ch);		
+	}elseif(preg_match('//info/', $text)){
+		$response = "Benvenuti nella sezione info di 50enne_bot
+		inizia bene la giornata digitando buongiorno o buongiornissimo!
+		Ecco l'elenco dei comandi disponibili  :
+		Buongiorno : ricevere il buongiorno dal bot,
+		Immagine : Ricevere una simpatica immagine,
+		BuonaNotte per ricevere la buonanotte dal bot.
+		Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti!
+		
+		Stay tuned!
+		
+		";
 	}
 	else{
 		//$response = "ELSE";
