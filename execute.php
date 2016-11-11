@@ -111,7 +111,7 @@ try {
 		// read curl response
 		$output = curl_exec($ch);		
 	}elseif(preg_match('/info/', $text)){
-		$response = "Benvenuti nella sezione info di 50enne_bot! Inizia bene la giornata digitando buongiorno o buongiornissimo! Ecco l'elenco dei comandi disponibili  :		Buongiorno : ricevere il buongiorno dal bot,		Immagine : Ricevere una simpatica immagine,		BuonaNotte per ricevere la buonanotte dal bot.		Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! /n				Stay tuned!";
+		$response = "Benvenuti nella sezione info di 50enne_bot! Inizia bene la giornata digitando buongiorno o buongiornissimo! Ecco l'elenco dei comandi disponibili  :		Buongiorno : ricevere il buongiorno dal bot,		Immagine : Ricevere una simpatica immagine,		BuonaNotte per ricevere la buonanotte dal bot.		Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! <br>				Stay tuned!";
 	}
 	else{
 		//$response = "ELSE";
