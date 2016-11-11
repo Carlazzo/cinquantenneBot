@@ -3,18 +3,8 @@
 define('BOT_TOKEN', '287099689:AAHEUsdjtrD2VN1vgWfJnXcq5TfSTrLLbUE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
-$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 
 try {
-
-    $message = isset($update['message']) ? $update['message'] : "";
-    $messageId = isset($message['message_id']) ? $message['message_id'] : "";
-    $firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
-    $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : "";
-    $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
-    $date = isset($message['date']) ? $message['date'] : "";
-    $text = isset($message['text']) ? $message['text'] : "";
-    $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 
     // recupero il contenuto inviato da Telegram
 	$content = file_get_contents("php://input");
@@ -26,6 +16,15 @@ try {
 	  exit;
 	}
 	// assegno alle seguenti variabili il contenuto ricevuto da Telegram
+    $message = isset($update['message']) ? $update['message'] : "";
+    $messageId = isset($message['message_id']) ? $message['message_id'] : "";
+    $firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
+    $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : "";
+    $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
+    $date = isset($message['date']) ? $message['date'] : "";
+    $text = isset($message['text']) ? $message['text'] : "";
+    $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+    $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 
 	$giornodellasettimana = date("l");
 	// pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
@@ -40,9 +39,19 @@ try {
 
 	if (preg_match('/^buongiorno/', $text) || preg_match('/^buongiornissimo/', $text)) {
         //se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
-		/*$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
+		/*$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";*/
 
-        $output =sendPhotos($path,$chatId,$botUrl );*/
+        $path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
+
+		// change image name and path
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+		curl_setopt($ch, CURLOPT_URL, $botUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+		// read curl response
+		$output = curl_exec($ch);
 
 	}elseif(preg_match('/politica/', $text) || preg_match('/renzi/', $text)){
 		$response = "E renzi ke faaa????";
@@ -106,15 +115,15 @@ try {
 	}elseif(preg_match('/info/', $text)){
 
 		$response = "Benvenuti nella sezione info di 50enne_bot!
-		Inizia bene la giornata digitando 'buongiorno' o 'buongiornissimo'! 
-		
+		Inizia bene la giornata digitando 'buongiorno' o 'buongiornissimo'!
+
 		Ecco l'elenco dei comandi disponibili  :
-			- Buongiorno : ricevere il buongiorno dal bot, 
-			- Immagine : Ricevere una simpatica immagine, 
+			- Buongiorno : ricevere il buongiorno dal bot,
+			- Immagine : Ricevere una simpatica immagine,
 			- BuonaNotte per ricevere la buonanotte dal bot.
-			
+
 		Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti!
-		
+
 		Stay tuned!";
 
 
