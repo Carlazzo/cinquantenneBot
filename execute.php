@@ -35,7 +35,7 @@ try {
 	$response = '';
 	//regual expression per decidere che risposta dare
 
-	if (preg_match('/^buongiorno/', $text)) {
+	if (preg_match('/^buongiorno/', $text) or preg_match('/^buongiornissimo/', $text)) {
 		
 		$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
 		
@@ -50,7 +50,7 @@ try {
 		$output = curl_exec($ch);
 
 		//se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
-	}elseif(preg_match('/politica/', $text)){
+	}elseif(preg_match('/politica/', $text) or preg_match('/renzi/', $text)){
 		$response = "E renzi ke faaa????";
 	}elseif(preg_match('/salvini/', $text)){
 		$response = "RUSPA!!";
