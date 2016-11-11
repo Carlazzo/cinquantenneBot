@@ -112,7 +112,7 @@ try {
 		$output = curl_exec($ch);		
 	}elseif(preg_match('/info/', $text)){
 		//$response = "<h1></h1> <p>Inizia bene la giornata digitando buongiorno o buongiornissimo!</p> <p>Ecco l'elenco dei comandi disponibili  :</p><ul>		<li>Buongiorno : ricevere il buongiorno dal bot,</li>		<li>Immagine : Ricevere una simpatica immagine,</li>		<li>BuonaNotte per ricevere la buonanotte dal bot.</li></ul>		<h5>Il bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! <h5>				Stay tuned!";
-		$response = "Benvenuti nella sezione info di 50enne_bot!\n Inizia bene la giornata digitando buongiorno o buongiornissimo! \n  Ecco l'elenco dei comandi disponibili  :\nBuongiorno : ricevere il buongiorno dal bot, \nImmagine : Ricevere una simpatica immagine, \nBuonaNotte per ricevere la buonanotte dal bot.\nIl bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! \n				Stay tuned!";		
+		$response = "Benvenuti nella sezione info di 50enne_bot!\nInizia bene la giornata digitando buongiorno o buongiornissimo! \n\nEcco l'elenco dei comandi disponibili  :\n Buongiorno : ricevere il buongiorno dal bot, \n Immagine : Ricevere una simpatica immagine, \n BuonaNotte per ricevere la buonanotte dal bot.\n\nIl bot e' in espansione per qualsiasi consiglio o immagine che volete aggiungere sara' presto disponibile la sezione suggerimenti! \n				Stay tuned!";		
 			
 	
 	}
