@@ -19,6 +19,7 @@ $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
  * @param $botUrl
  * @return mixed
  */
+/*
 function sendPhotos($path, $chatId, $botUrl ){
 
     $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)));
@@ -29,7 +30,7 @@ function sendPhotos($path, $chatId, $botUrl ){
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
     // read curl response
     return curl_exec($ch);
-}
+}*/
 try {
 
 	// recupero il contenuto inviato da Telegram
@@ -56,9 +57,9 @@ try {
 
 	if (preg_match('/^buongiorno/', $text) || preg_match('/^buongiornissimo/', $text)) {
         //se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
-		$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
+		/*$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
 
-        $output =sendPhotos($path,$chatId,$botUrl );
+        $output =sendPhotos($path,$chatId,$botUrl );*/
 
 	}elseif(preg_match('/politica/', $text) || preg_match('/renzi/', $text)){
 		$response = "E renzi ke faaa????";
