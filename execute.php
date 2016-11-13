@@ -128,8 +128,13 @@ try {
 
 
 	}elseif(preg_match('/conta/', $text)){
-		$var = (string)(count(scandir("immagini/"))
-		$response = "numero immagini 0".$var;
+		if(scandir("immagini/")){
+			$response = (count(scandir("immagini/"));
+		}else{
+			$response = "scandir falso ";
+		}
+		
+		//$response = "numero immagini 0".$var;
 	}
 	
 
