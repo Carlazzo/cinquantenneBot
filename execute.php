@@ -127,7 +127,7 @@ try {
 		Stay tuned!";
 
 
-	}elseif(preg_match('/conta/', $text)){
+	}/*elseif(preg_match('/conta/', $text)){
 		if(scandir("immagini/")){
 			$response = (count(scandir("immagini/"));
 		}else{
@@ -135,7 +135,7 @@ try {
 		}
 		
 		//$response = "numero immagini 0".$var;
-	}
+	}*/
 	
 
 
