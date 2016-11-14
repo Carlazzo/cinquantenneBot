@@ -3,6 +3,16 @@
 define('BOT_TOKEN', '287099689:AAHEUsdjtrD2VN1vgWfJnXcq5TfSTrLLbUE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
+function getNumberOfFileInPath($path){
+    if(scandir($path)){
+        /***
+        Note: i subtracted “2” from the gross-count to get the final net-count because PHP include (.) and (..) among the file and directory returned by scandir()         *
+         */
+        return (count(scandir($path)) -2);
+    }else{
+        return 0;
+    }
+}
 
 try {
 
@@ -41,7 +51,7 @@ try {
         //se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
 		/*$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";*/
 
-        $path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";
+        $path = "settimana/".$giornodellasettimana."/".rand(1, getNumberOfFileInPath("settimana/".$giornodellasettimana)).".jpg";
 
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -75,7 +85,7 @@ try {
 	}elseif(preg_match('/condividi/', $text)){
 		$response = "copia e incolla sulla tua bacheca!!!!!11!";
 	}elseif(preg_match('/immagine/', $text) || preg_match('/foto/', $text)){
-		$path = "immagini/".rand(1, 10).".jpg";
+		$path = "immagini/".rand(1, getNumberOfFileInPath("immagini/")).".jpg";
 
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -88,7 +98,7 @@ try {
 		$output = curl_exec($ch);
 	}
 	elseif(preg_match('/cinismo/', $text)){
-		$path = "immagini/".rand(1, 13).".jpg";
+		$path = "immagini/".rand(1, getNumberOfFileInPath("immagini/")).".jpg";
 
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -129,11 +139,8 @@ try {
 
 	}elseif(preg_match('/conta/', $text)){
 
-		if(scandir("immagini/amen")){
-			$response = (count(scandir("immagini/amen")));
-		}else{
-			$response = "scandir falso ";
-		}
+
+
 
 		//$response = "numero immagini 0".$var;
 	}
