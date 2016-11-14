@@ -127,16 +127,17 @@ try {
 		Stay tuned!";
 
 
-	}/*elseif(preg_match('/conta/', $text)){
+	}elseif(preg_match('/conta/', $text)){
+
 		if(scandir("immagini/")){
-			$response = (count(scandir("immagini/"));
+			$response = (count(scandir("immagini/")));
 		}else{
 			$response = "scandir falso ";
 		}
-		
+
 		//$response = "numero immagini 0".$var;
-	}*/
-	
+	}
+
 
 
 	// la mia risposta è un array JSON composto da chat_id, text, method
