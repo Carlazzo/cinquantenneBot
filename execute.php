@@ -129,7 +129,7 @@ try {
 
 	}elseif(preg_match('/conta/', $text)){
 
-		if(scandir("immagini/")){
+		if(scandir("immagini/amen")){
 			$response = (count(scandir("immagini/")));
 		}else{
 			$response = "scandir falso ";
