@@ -70,8 +70,10 @@ try {
 		$response = "Perzona Farsa!!!1!1";
 	}elseif(preg_match('/caffe/', $text) || preg_match('/caffé/', $text) || preg_match('/caffè/', $text) ){
 		$response = "Kaffeeeee!!!1!1";
-	}elseif(preg_match('/amen/', $text || preg_match('/preghiera/', $text) || preg_match('/santino/', $text))){
-		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("immagini/amen/".rand(1, getNumberOfFileInPath("immagini/amen/")).".jpg")), 'caption' => "");
+	}elseif(preg_match('/amen/', $text) || preg_match('/preghiera/', $text) || preg_match('/santino/', $text)){
+        $path = "immagini/amen/".rand(1, getNumberOfFileInPath("immagini/amen/")).".jpg";
+
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 		curl_setopt($ch, CURLOPT_URL, $botUrl);
