@@ -49,7 +49,6 @@ try {
 
 	if (preg_match('/^buongiorno/', $text) || preg_match('/^buongiornissimo/', $text)) {
         //se $giornodellasettimana e' 1 bisogna mandare foto del lunedi se e' martedi' foto del martedi' ecc...
-		/*$path = "settimana/".$giornodellasettimana."/".rand(1, 3).".jpg";*/
 
         $path = "settimana/".$giornodellasettimana."/".rand(1, getNumberOfFileInPath("settimana/".$giornodellasettimana)).".jpg";
 
@@ -72,7 +71,7 @@ try {
 	}elseif(preg_match('/caffe/', $text) || preg_match('/caffé/', $text) || preg_match('/caffè/', $text) ){
 		$response = "Kaffeeeee!!!1!1";
 	}elseif(preg_match('/amen/', $text || preg_match('/preghiera/', $text) || preg_match('/santino/', $text))){
-		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("immagini/amen/arcangelo.jpg")), 'caption' => "");
+		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("immagini/amen/".rand(1, getNumberOfFileInPath("immagini/amen/")).".jpg")), 'caption' => "");
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 		curl_setopt($ch, CURLOPT_URL, $botUrl);
@@ -85,7 +84,7 @@ try {
 	}elseif(preg_match('/condividi/', $text)){
 		$response = "copia e incolla sulla tua bacheca!!!!!11!";
 	}elseif(preg_match('/immagine/', $text) || preg_match('/foto/', $text)){
-		$path = "immagini/".rand(1, getNumberOfFileInPath("immagini/")).".jpg";
+        $path = "immagini/generiche/".rand(1, getNumberOfFileInPath("immagini/generiche/")).".jpg";
 
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -98,7 +97,7 @@ try {
 		$output = curl_exec($ch);
 	}
 	elseif(preg_match('/cinismo/', $text)){
-		$path = "immagini/".rand(1, getNumberOfFileInPath("immagini/")).".jpg";
+		$path = "immagini/generiche/".rand(1, getNumberOfFileInPath("immagini/generiche/")).".jpg";
 
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -111,7 +110,7 @@ try {
 		$output = curl_exec($ch);
 	}
 	elseif(preg_match('/buonanotte/', $text) || preg_match('/buona notte/', $text)){
-		$path = "immagini/buonanotte".rand(1, 2).".jpg";
+		$path = "immagini/buonanotte/".rand(1, getNumberOfFileInPath("immagini/buonanotte/")).".jpg";
 
 		// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
@@ -137,15 +136,7 @@ try {
 		Stay tuned!";
 
 
-	}elseif(preg_match('/conta/', $text)){
-
-
-
-
-		//$response = "numero immagini 0".$var;
 	}
-
-
 
 	// la mia risposta è un array JSON composto da chat_id, text, method
 	// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
