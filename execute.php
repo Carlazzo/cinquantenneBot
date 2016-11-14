@@ -2,7 +2,11 @@
 
 define('BOT_TOKEN', '287099689:AAHEUsdjtrD2VN1vgWfJnXcq5TfSTrLLbUE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
-
+/**
+ * funzione che si occupa di far tornare il numero di file contenuti in una directory passandogli il path
+ * @param $path
+ * @return int
+ */
 function getNumberOfFileInPath($path){
     if(scandir($path)){
         /***
@@ -14,6 +18,23 @@ function getNumberOfFileInPath($path){
     }
 }
 
+/**
+ * @param $chatId
+ * @param $path
+ * @param $botUrl
+ * @return mixed
+ */
+function sendPhotos($chatId, $path,$botUrl){
+
+    $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+    curl_setopt($ch, CURLOPT_URL, $botUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+    // read curl response
+    return curl_exec($ch);
+}
 try {
 
     // recupero il contenuto inviato da Telegram
@@ -52,15 +73,16 @@ try {
 
         $path = "settimana/".$giornodellasettimana."/".rand(1, getNumberOfFileInPath("settimana/".$giornodellasettimana)).".jpg";
 
-		// change image name and path
+		/*// change image name and path
 		$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath($path)), 'caption' => "");
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
 		curl_setopt($ch, CURLOPT_URL, $botUrl);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);*/
 		// read curl response
-		$output = curl_exec($ch);
+        // curl_exec($ch);
+		$output = sendPhotos($chatId, $path, $botUrl );
 
 	}elseif(preg_match('/politica/', $text) || preg_match('/renzi/', $text)){
 		$response = "E renzi ke faaa????";
