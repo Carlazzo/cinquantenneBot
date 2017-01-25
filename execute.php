@@ -110,7 +110,7 @@ try {
 		    $path = "immagini/buonanotte/".rand(1, getNumberOfFileInPath("immagini/buonanotte/")).".jpg";
         $output = sendPhotos($chatId, $path, $botUrl );
 
-  }elseif(preg_match('/info/', $text)){
+  }elseif(preg_match('/\/info/', $text)){
 
 		$response = "Benvenuti nella sezione info di 50enne_bot!
 		Inizia bene la giornata digitando 'buongiorno' o 'buongiornissimo'!
