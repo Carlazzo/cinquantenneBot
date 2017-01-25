@@ -70,9 +70,9 @@ try {
 
 	if (preg_match('/^buongiorno/', $text) || preg_match('/^buongiornissimo/', $text)) {
 
-        $giornodellasettimana = date("l");
-        $path = "settimana/".$giornodellasettimana."/".rand(1, getNumberOfFileInPath("settimana/".$giornodellasettimana)).".jpg";
-		$output = sendPhotos($chatId, $path, $botUrl );
+      $giornodellasettimana = date("l");
+      $path = "settimana/".$giornodellasettimana."/".rand(1, getNumberOfFileInPath("settimana/".$giornodellasettimana)).".jpg";
+      $output = sendPhotos($chatId, $path, $botUrl );
 
 	}
 
@@ -107,10 +107,10 @@ try {
     }
 	elseif(preg_match('/buonanotte/', $text) || preg_match('/buona notte/', $text)){
 
-		$path = "immagini/buonanotte/".rand(1, getNumberOfFileInPath("immagini/buonanotte/")).".jpg";
+		    $path = "immagini/buonanotte/".rand(1, getNumberOfFileInPath("immagini/buonanotte/")).".jpg";
         $output = sendPhotos($chatId, $path, $botUrl );
 
-    }elseif(preg_match('/info/', $text)){
+  }elseif(preg_match('/info/', $text)){
 
 		$response = "Benvenuti nella sezione info di 50enne_bot!
 		Inizia bene la giornata digitando 'buongiorno' o 'buongiornissimo'!
@@ -127,7 +127,6 @@ try {
 
 	}
 
-
 	// la mia risposta è un array JSON composto da chat_id, text, method
 	// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
 	// text è il testo della risposta
@@ -139,9 +138,9 @@ try {
 
 }catch(Exception $e){
 
-	$parameters = array('chat_id' => $chatId, "text" => "Errore");
+	$parameters = array('chat_id' => $chatId, "text" => $e->getMessage(), 'method' => "sendMessage");
 	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
-	$parameters["method"] = "sendMessage";
+	//$parameters["method"] = "sendMessage";
 
 	echo json_encode($parameters);
 }
