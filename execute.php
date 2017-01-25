@@ -75,7 +75,7 @@ try {
 		$output = sendPhotos($chatId, $path, $botUrl );
 
 	}
-  /*
+
   elseif(preg_match('/politica/', $text) || preg_match('/renzi/', $text)){
 		$response = "E renzi ke faaa????";
 	}elseif(preg_match('/salvini/', $text)){
@@ -126,7 +126,7 @@ try {
 
 
 	}
-*/
+
 
 	// la mia risposta è un array JSON composto da chat_id, text, method
 	// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
@@ -139,7 +139,7 @@ try {
 
 }catch(Exception $e){
 
-	$parameters = array('chat_id' => $chatId, "text" => $e->getMessage());
+	$parameters = array('chat_id' => $chatId, "text" => "Errore");
 	// method è il metodo per l'invio di un messaggio (cfr. API di Telegram)
 	$parameters["method"] = "sendMessage";
 
