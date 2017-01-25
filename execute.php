@@ -37,7 +37,7 @@ function sendPhotos($chatId, $path,$botUrl){
 }
 try {
 
-    // recupero il contenuto inviato da Telegram
+  // recupero il contenuto inviato da Telegram
 	$content = file_get_contents("php://input");
 	// converto il contenuto da JSON ad array PHP
 	$update = json_decode($content, true);
@@ -74,7 +74,9 @@ try {
         $path = "settimana/".$giornodellasettimana."/".rand(1, getNumberOfFileInPath("settimana/".$giornodellasettimana)).".jpg";
 		$output = sendPhotos($chatId, $path, $botUrl );
 
-	}elseif(preg_match('/politica/', $text) || preg_match('/renzi/', $text)){
+	}
+  /*
+  elseif(preg_match('/politica/', $text) || preg_match('/renzi/', $text)){
 		$response = "E renzi ke faaa????";
 	}elseif(preg_match('/salvini/', $text)){
 		$response = "RUSPA!!";
@@ -124,6 +126,7 @@ try {
 
 
 	}
+*/
 
 	// la mia risposta è un array JSON composto da chat_id, text, method
 	// chat_id mi consente di rispondere allo specifico utente che ha scritto al bot
